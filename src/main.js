@@ -3,6 +3,10 @@
 /* eslint-disable brace-style */
 /* eslint-disable require-jsdoc */
 
+import * as THREE from 'three';
+import * as CANNON from 'cannon-es';
+const OrbitControls = require('three/examples/jsm/controls/OrbitControls.js');
+
 let scene;
 let camera;
 let renderer;
@@ -72,7 +76,7 @@ tetrominoes_font.load().then(function(loaded_face) {
   document.body.style.fontFamily = '"Tetrominoes Regular", Arial';
 }).catch(function(error) {
   console.log('Couldn\'t find "Tetrominoes" font locally. https://www.dafont.com/tetrominoes.font');
-  tetrominoes_font = new FontFace('Tetrominoes Regular', 'url(./misc/fonts/tetrominoes.woff2)');
+  tetrominoes_font = new FontFace('Tetrominoes Regular', 'url(../assets/fonts/tetrominoes.woff2)');
   tetrominoes_font.load().then(function(loaded_face) {
     document.fonts.add(loaded_face);
     document.body.style.fontFamily = '"Tetrominoes Regular", Arial';
@@ -96,9 +100,9 @@ function init() {
   // Initialize scene
   scene = new THREE.Scene();
   scene.fog = new THREE.Fog( 0x050505, 1, 250 );
-  if (toggleDebug) {
-    cannonDebugRenderer = new THREE.CannonDebugRenderer( scene, world );
-  }
+  // if (toggleDebug) {
+  //   cannonDebugRenderer = new THREE.CannonDebugRenderer( scene, world );
+  // }
   scene.background = new THREE.Color( 0x050505 );
 
   // Lights
@@ -159,14 +163,14 @@ function init() {
   document.body.appendChild(renderer.domElement);
 
   // Setup controls
-  controls = new THREE.OrbitControls(camera, renderer.domElement);  
-  controls.object.position.set(0,50,90);
-  controls.enabled = true;
-  controls.enablePan = false;
-  controls.enableZoom = false;
-  controls.maxPolarAngle = Math.PI / 2.2;
-  controls.object.updateProjectionMatrix();
-  controls.update();
+  //controls = new THREE.OrbitControls(camera, renderer.domElement);
+  camera.object.position.set(0,50,90);
+  //controls.enabled = true;
+  camera.enablePan = false;
+  camera.enableZoom = false;
+  camera.maxPolarAngle = Math.PI / 2.2;
+  camera.object.updateProjectionMatrix();
+  camera.update();
 
   // Spawn arena geometry
   setupArena();
@@ -220,9 +224,9 @@ function startAnimating(fps) {
       console.log('hitting wall: ' + hittingWall[0])
 
       // Render
-      if (toggleDebug) {
-        cannonDebugRenderer.update();
-      }
+      // if (toggleDebug) {
+      //   cannonDebugRenderer.update();
+      // }
       renderer.render(scene, camera);
     }
   }
@@ -236,7 +240,7 @@ function setupArena() {
     const floorGeometry = new THREE.BoxGeometry(50, 0.1, 50);
     const loader = new THREE.TextureLoader();
     const floorMaterial = new THREE.MeshPhongMaterial({
-      map: loader.load('./misc/textures/tiledgreyback1.png'),
+      map: loader.load('../assets/textures/tiledgreyback1.png'),
     });
     //const floorMaterial = new THREE.MeshPhongMaterial({color: 0x313a3b});
     floorCube = new THREE.Mesh(floorGeometry, floorMaterial, 0);
@@ -1024,7 +1028,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   if (typeof SpeechRecognition !== "undefined") {
     const recognition = new SpeechRecognition();
-    speechRecognitionList = new SpeechGrammarList();
+    let speechRecognitionList = new SpeechGrammarList();
     speechRecognitionList.addFromString(grammar, 1);
     recognition.grammars = speechRecognitionList;
     recognition.lang = 'en-US';

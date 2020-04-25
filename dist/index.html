@@ -9,11 +9,8 @@
   <link rel=stylesheet href="./style.css">
   <body>
     <!-- JS Files -->
-    <script src="js/three.min.js"></script>
-    <script src="js/OrbitControls.js"></script>
-    <script src="js/cannon.min.js"></script>
-    <script src="js/CannonDebugRenderer.js"></script>
-    <script src="main.js"></script>
+    <!-- <script src="../src/js/CannonDebugRenderer.js"></script> -->
+    <script src="./main.js"></script>
     <!-- Page -->
     <div id="title">TETRIVOICE</div>
     <main>
@@ -47,7 +44,6 @@
         <li><b>S</b> moves down</li>
         <li><b>A</b> moves left</li>
         <li><b>D</b> moves right</li>
-        <!-- <li>T to spawn blocks</li> -->
       </div>
       <div id="voiceComs" style='color: white;' class="section">
         <span id="leftArrow" style='font-size:100px;'>&#8672;</span>
@@ -63,20 +59,19 @@
           <li>ROTATE</li>
           <li>MOVE</li>
           <li>DROP</li>
-          <!-- <li>SPAWN</li> -->
         </ul>
       </div>
   </body>
   <footer class='footer'>
     <!-- Audio Tracks -->
     <audio id="soundtrack">
-      <source src="./misc/sounds/Game_Tunes-14289/Total_Reboot_-_01_-_Your_Mission.mp3" type="audio/mpeg">
-      <source src="./misc/sounds/Game_Tunes-14289/ZhangJW_-_02_-_Level_1.mp3" type="audio/mpeg">
-      <source src="./misc/sounds/Game_Tunes-14289/Total_Reboot_-_03_-_Level_2.mp3" type="audio/mpeg">
-      <source src="./misc/sounds/Game_Tunes-14289/ZhangJW_-_04_-_Level_3.mp3" type="audio/mpeg">
-      <source src="./misc/sounds/Game_Tunes-14289/Total_Reboot_-_05_-_Level_4_Lose.mp3" type="audio/mpeg">
-      <source src="./misc/sounds/Game_Tunes-14289/ZhangJW_-_06_-_Level_5_Win.mp3" type="audio/mpeg">
-      <source src="./misc/sounds/Game_Tunes-14289/Total_Reboot_-_07_-_Game_Over.mp3" type="audio/mpeg">
+      <source src="../assets/sounds/Game_Tunes-14289/Total_Reboot_-_01_-_Your_Mission.mp3" type="audio/mpeg">
+      <source src="../assets/sounds/Game_Tunes-14289/ZhangJW_-_02_-_Level_1.mp3" type="audio/mpeg">
+      <source src="../assets/sounds/Game_Tunes-14289/Total_Reboot_-_03_-_Level_2.mp3" type="audio/mpeg">
+      <source src="../assets/sounds/Game_Tunes-14289/ZhangJW_-_04_-_Level_3.mp3" type="audio/mpeg">
+      <source src="../assets/sounds/Game_Tunes-14289/Total_Reboot_-_05_-_Level_4_Lose.mp3" type="audio/mpeg">
+      <source src="../assets/sounds/Game_Tunes-14289/ZhangJW_-_06_-_Level_5_Win.mp3" type="audio/mpeg">
+      <source src="../assets/sounds/Game_Tunes-14289/Total_Reboot_-_07_-_Game_Over.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
   </footer>
