@@ -3,9 +3,7 @@
 /* eslint-disable brace-style */
 /* eslint-disable require-jsdoc */
 
-const SpeechRecognition =
-window.SpeechRecognition || window.webkitSpeechRecognition;
-const SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const SpeechRecognitionEvent = window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
 let recognition;
 
@@ -1069,13 +1067,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   let listening = false;
 
-  let grammar = '#JSGF V1.0; grammar movements; public <movement> = move | rotate | drop | spawn ;'
-
   if (typeof SpeechRecognition !== "undefined") {
     recognition = new SpeechRecognition();
-    let speechRecognitionList = new SpeechGrammarList();
-    speechRecognitionList.addFromString(grammar, 1);
-    recognition.grammars = speechRecognitionList;
     recognition.lang = langList[currentLang]["code"];
     recognition.maxAlternatives = 0;
 
