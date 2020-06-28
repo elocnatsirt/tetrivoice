@@ -1,3 +1,38 @@
+// Localization Support
+//
+// Default language set as English
+// Get languages from langList
+// Show settings page/dropdown menu for languages
+// If user changes localization, look up & set translated commands
+//
+
+function loadLanguages() {
+  const langId = document.getElementById('languagesDD');
+  const langs = Object.keys(langList)
+  for (const l of langs) {
+    if (langList[l]["code"]) {
+      if (langList[l]["code"] == 'en-US') {
+        langId.options[langId.options.length] = new Option(l, langList[l]["code"], true, true);
+      } else {
+        langId.options[langId.options.length] = new Option(l, langList[l]["code"], false, false);
+      }
+    }
+  }
+
+  langId.addEventListener("change", function(){
+    console.log('Changed language to ' + langId.options[langId.selectedIndex].innerHTML);
+    currentLang = langId.options[langId.selectedIndex].innerHTML;
+    recognition.lang = langList[currentLang]["code"];
+    // Update displayed commands
+    document.getElementById("rotate").innerHTML = langList[currentLang]["voiceCommands"]["rotate"].toUpperCase();
+    document.getElementById("move").innerHTML = langList[currentLang]["voiceCommands"]["move"].toUpperCase();
+    document.getElementById("drop").innerHTML = langList[currentLang]["voiceCommands"]["drop"].toUpperCase();
+  });
+}
+
+//
+// Language template
+//
 // '': {
 //   code: '',
 //   voiceCommands: {
@@ -8,6 +43,7 @@
 //     spawn: ''
 //   }
 // },
+//
 
 const langList = {
   "Arabic (United Arab Emirates)": "ar-AE",
